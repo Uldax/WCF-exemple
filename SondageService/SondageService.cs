@@ -7,7 +7,8 @@ using System.Collections;
 
 namespace USherbrooke.ServiceModel.Sondage
 {
-
+    //Juste for 1 instance ! Keep a track of all user connected
+    [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
     public class SondageService : ISondageService
     {
         // Couple login, mot de passe pour authentifier l'utilisateur
@@ -17,17 +18,13 @@ namespace USherbrooke.ServiceModel.Sondage
 
         public SondageService()
         {
+
             this.UsersList = new Dictionary<string, string>();
             this.UsersConnected = new Dictionary<int, SimpleSondageDAO>();
             // Liste des utilisateurs autorisés à se connecter
             //TODO protect password
             this.UsersList.Add("paul", "paul");
             this.UsersList.Add("test", "admin");
-
-            Console.WriteLine("******************");
-            Console.WriteLine("SondageWS - SERVER");
-            Console.WriteLine("******************");
-            Console.WriteLine(String.Empty);
         }
 
         public int Connect(String name, String password)
@@ -46,9 +43,8 @@ namespace USherbrooke.ServiceModel.Sondage
               
                     // Instanciation d'un identifiant pour l'utilisateur
                     int userId = this.UsersConnected.Count + 1;
-                        
-                    // Ajout de l'utilisateur en mémoire
                     this.UsersConnected.Add(userId, sondage);
+                    this.DiplayUsers();
                     Console.WriteLine("Utilisateur connecté et authentifié. userId (token): {0}", userId);
                     return userId;
                 }                 
@@ -58,12 +54,29 @@ namespace USherbrooke.ServiceModel.Sondage
 
         public IList<Poll> GetAvailablePolls(int userId)
         {
-            throw new NotImplementedException();
+            if (IsUserConnected(userId)) {
+                SimpleSondageDAO userDAO = null;
+                this.UsersConnected.TryGetValue(userId, out userDAO);
+                return userDAO.GetAvailablePolls();
+            }
+            return null;
         }
 
         public PollQuestion GetNext(int userId, PollQuestion answer)
         {
             throw new NotImplementedException();
+        }
+
+        private bool IsUserConnected(int userId)
+        {
+            return this.UsersConnected.ContainsKey(userId);
+        }
+
+        private void DiplayUsers()
+        {
+            Console.WriteLine("Display");
+            this.UsersConnected.ToList().ForEach(x => Console.WriteLine(x.Key));
+            Console.WriteLine("End display");
         }
     }
 

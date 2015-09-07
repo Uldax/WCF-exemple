@@ -38,6 +38,15 @@ namespace USherbrooke.ServiceModel.Sondage
                 Console.WriteLine("(Appuyez sur <Entrée> pour arrêter le service)");
                 Console.WriteLine(String.Empty);
                 Console.ReadLine();
+                  // Arrêt du service
+                try
+                {
+                    poolServiceHost.Close();
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
             }                
                                  
         }

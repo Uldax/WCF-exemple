@@ -12,8 +12,7 @@ namespace SondageClient
         static void Main(string[] args)
         {
             SondageServiceClient client = new SondageServiceClient();
-            try
-            {
+            try {
                 String mdp = "paul";
                 int userID =  client.Connect("paul",mdp);
                 // Si l'authenfication a échouée
@@ -22,21 +21,24 @@ namespace SondageClient
                 } else {
                     Console.WriteLine("Connected");
                     Poll[] polls = client.GetAvailablePolls(userID);
+                    Console.WriteLine("Call to GetPool");
+
                     // Affichage des sondages disponibles
-                    Console.WriteLine("Sondages disponibles\n");
-                    foreach (Poll poll in polls)
-                    {
-                        Console.WriteLine(poll.Id + ". " + poll.Description);
+                    if (polls != null) {
+                        Console.WriteLine("I have pool");          
+                        Console.WriteLine("Sondages disponibles : {0} \n",polls.Length);
+                        foreach (Poll poll in polls)
+                        {
+                            Console.WriteLine(poll.Id + ". " + poll.Description);
+                        }
                     }
                 }
-
-            } catch(Exception e)
-            {
+            } catch(Exception e) {
                 Console.WriteLine(e.Message);
             }
             Console.ReadKey();
             // Allway close the client.
-            client.Close();
+            //client.Close();
 
 
         }

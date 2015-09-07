@@ -39,5 +39,6 @@ namespace USherbrooke.ServiceModel.Sondage
         [OperationContract]
         PollQuestion GetNext(int userId, PollQuestion answer);
 
+
     }
 }
