@@ -19,15 +19,15 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://localhost:1234/SondageWS" Protocol="http" SourceId="1" />
+    <MetadataSource Address="https://localhost:1234/SondageWS" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="SondageWS.xsd" MetadataType="Schema" ID="4b88443e-554d-4e44-9053-08614d4f00ed" SourceId="1" SourceUrl="http://localhost:1234/SondageWS?xsd=xsd1" />
-    <MetadataFile FileName="SondageWS.wsdl" MetadataType="Wsdl" ID="81f4b6d4-4609-4f4b-8366-ad474e54668e" SourceId="1" SourceUrl="http://localhost:1234/SondageWS?wsdl=wsdl0" />
-    <MetadataFile FileName="SondageWS1.xsd" MetadataType="Schema" ID="73f67e7d-a813-4f05-aa7a-840e7ba60c2a" SourceId="1" SourceUrl="http://localhost:1234/SondageWS?xsd=xsd2" />
-    <MetadataFile FileName="SondageService.wsdl" MetadataType="Wsdl" ID="1cb50c04-6732-4c8a-96c9-79487a2bbf09" SourceId="1" SourceUrl="http://localhost:1234/SondageWS?wsdl" />
-    <MetadataFile FileName="SondageWS2.xsd" MetadataType="Schema" ID="6d0a9136-e11f-41f1-b19a-753a4369e26b" SourceId="1" SourceUrl="http://localhost:1234/SondageWS?xsd=xsd0" />
-    <MetadataFile FileName="SondageWS.disco" MetadataType="Disco" ID="bda6efde-7ae9-4213-88b1-1a6b8ec2db8e" SourceId="1" SourceUrl="http://localhost:1234/SondageWS?disco" />
+    <MetadataFile FileName="SondageWS3.xsd" MetadataType="Schema" ID="9a706da9-bc85-4f7e-a62d-f7fad7b903e0" SourceId="1" SourceUrl="https://localhost:1234/SondageWS?xsd=xsd1" />
+    <MetadataFile FileName="SondageWS31.xsd" MetadataType="Schema" ID="75c6ad01-48cc-4ef6-bd80-aba331d6ad87" SourceId="1" SourceUrl="https://localhost:1234/SondageWS?xsd=xsd2" />
+    <MetadataFile FileName="SondageService1.wsdl" MetadataType="Wsdl" ID="c9a0228d-7abc-4ae7-8a81-9d24c9aae776" SourceId="1" SourceUrl="https://localhost:1234/SondageWS?wsdl" />
+    <MetadataFile FileName="SondageWS32.xsd" MetadataType="Schema" ID="c05f7c55-460c-4d8c-af54-ee4a35dcbcf6" SourceId="1" SourceUrl="https://localhost:1234/SondageWS?xsd=xsd0" />
+    <MetadataFile FileName="SondageWS1.wsdl" MetadataType="Wsdl" ID="3ad08af5-86fa-439a-9a39-23bc351de6db" SourceId="1" SourceUrl="https://localhost:1234/SondageWS?wsdl=wsdl0" />
+    <MetadataFile FileName="SondageWS1.disco" MetadataType="Disco" ID="adae0f5b-4aa9-489d-9588-95394eab8518" SourceId="1" SourceUrl="https://localhost:1234/SondageWS?disco" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

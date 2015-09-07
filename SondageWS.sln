@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SondageClient", "SondageCli
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestProject1", "UnitTestProject1\UnitTestProject1.csproj", "{03CFC714-78FD-468C-BF11-13C29333B809}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BindingCert", "BindingCert\BindingCert.csproj", "{9479A025-FA58-4F9E-AE84-04D8BA43CAC8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,14 @@ Global
 		{03CFC714-78FD-468C-BF11-13C29333B809}.Release|Any CPU.Build.0 = Release|Any CPU
 		{03CFC714-78FD-468C-BF11-13C29333B809}.Release|x86.ActiveCfg = Release|Any CPU
 		{03CFC714-78FD-468C-BF11-13C29333B809}.Release|x86.Build.0 = Release|Any CPU
+		{9479A025-FA58-4F9E-AE84-04D8BA43CAC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9479A025-FA58-4F9E-AE84-04D8BA43CAC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9479A025-FA58-4F9E-AE84-04D8BA43CAC8}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{9479A025-FA58-4F9E-AE84-04D8BA43CAC8}.Debug|x86.Build.0 = Debug|Any CPU
+		{9479A025-FA58-4F9E-AE84-04D8BA43CAC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9479A025-FA58-4F9E-AE84-04D8BA43CAC8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9479A025-FA58-4F9E-AE84-04D8BA43CAC8}.Release|x86.ActiveCfg = Release|Any CPU
+		{9479A025-FA58-4F9E-AE84-04D8BA43CAC8}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

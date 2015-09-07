@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://USherbrooke.ServiceModel.Sondage" elementFormDefault="qualified" targetNamespace="http://USherbrooke.ServiceModel.Sondage" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import schemaLocation="http://localhost:1234/SondageWS?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/USherbrooke.ServiceModel.Sondage" />
+  <xs:import schemaLocation="https://localhost:1234/SondageWS?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/USherbrooke.ServiceModel.Sondage" />
   <xs:element name="Connect">
     <xs:complexType>
       <xs:sequence>
