@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="e17f093c-d90a-4438-9f1f-369a3329db07" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:1234/SondageWS" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="SondageWS.xsd" MetadataType="Schema" ID="4b88443e-554d-4e44-9053-08614d4f00ed" SourceId="1" SourceUrl="http://localhost:1234/SondageWS?xsd=xsd1" />
+    <MetadataFile FileName="SondageWS.wsdl" MetadataType="Wsdl" ID="81f4b6d4-4609-4f4b-8366-ad474e54668e" SourceId="1" SourceUrl="http://localhost:1234/SondageWS?wsdl=wsdl0" />
+    <MetadataFile FileName="SondageWS1.xsd" MetadataType="Schema" ID="73f67e7d-a813-4f05-aa7a-840e7ba60c2a" SourceId="1" SourceUrl="http://localhost:1234/SondageWS?xsd=xsd2" />
+    <MetadataFile FileName="SondageService.wsdl" MetadataType="Wsdl" ID="1cb50c04-6732-4c8a-96c9-79487a2bbf09" SourceId="1" SourceUrl="http://localhost:1234/SondageWS?wsdl" />
+    <MetadataFile FileName="SondageWS2.xsd" MetadataType="Schema" ID="6d0a9136-e11f-41f1-b19a-753a4369e26b" SourceId="1" SourceUrl="http://localhost:1234/SondageWS?xsd=xsd0" />
+    <MetadataFile FileName="SondageWS.disco" MetadataType="Disco" ID="bda6efde-7ae9-4213-88b1-1a6b8ec2db8e" SourceId="1" SourceUrl="http://localhost:1234/SondageWS?disco" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

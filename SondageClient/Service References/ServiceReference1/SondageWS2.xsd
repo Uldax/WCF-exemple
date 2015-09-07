@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://USherbrooke.ServiceModel.Sondage" elementFormDefault="qualified" targetNamespace="http://USherbrooke.ServiceModel.Sondage" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:1234/SondageWS?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/USherbrooke.ServiceModel.Sondage" />
+  <xs:element name="Connect">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="name" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="password" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ConnectResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ConnectResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAvailablePolls">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="userId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAvailablePollsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/USherbrooke.ServiceModel.Sondage" minOccurs="0" name="GetAvailablePollsResult" nillable="true" type="q1:ArrayOfPoll" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetNext">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="userId" type="xs:int" />
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/USherbrooke.ServiceModel.Sondage" minOccurs="0" name="answer" nillable="true" type="q2:PollQuestion" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetNextResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/USherbrooke.ServiceModel.Sondage" minOccurs="0" name="GetNextResult" nillable="true" type="q3:PollQuestion" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://USherbrooke.ServiceModel.Sondage" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://USherbrooke.ServiceModel.Sondage" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://USherbrooke.ServiceModel.Sondage/Imports">
+      <xsd:import schemaLocation="http://localhost:1234/SondageWS?xsd=xsd0" namespace="http://USherbrooke.ServiceModel.Sondage" />
+      <xsd:import schemaLocation="http://localhost:1234/SondageWS?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:1234/SondageWS?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/USherbrooke.ServiceModel.Sondage" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="ISondageService_Connect_InputMessage">
+    <wsdl:part name="parameters" element="tns:Connect" />
+  </wsdl:message>
+  <wsdl:message name="ISondageService_Connect_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ConnectResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISondageService_GetAvailablePolls_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAvailablePolls" />
+  </wsdl:message>
+  <wsdl:message name="ISondageService_GetAvailablePolls_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAvailablePollsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISondageService_GetNext_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetNext" />
+  </wsdl:message>
+  <wsdl:message name="ISondageService_GetNext_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetNextResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ISondageService">
+    <wsdl:operation name="Connect">
+      <wsdl:input wsam:Action="http://USherbrooke.ServiceModel.Sondage/ISondageService/Connect" message="tns:ISondageService_Connect_InputMessage" />
+      <wsdl:output wsam:Action="http://USherbrooke.ServiceModel.Sondage/ISondageService/ConnectResponse" message="tns:ISondageService_Connect_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAvailablePolls">
+      <wsdl:input wsam:Action="http://USherbrooke.ServiceModel.Sondage/ISondageService/GetAvailablePolls" message="tns:ISondageService_GetAvailablePolls_InputMessage" />
+      <wsdl:output wsam:Action="http://USherbrooke.ServiceModel.Sondage/ISondageService/GetAvailablePollsResponse" message="tns:ISondageService_GetAvailablePolls_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetNext">
+      <wsdl:input wsam:Action="http://USherbrooke.ServiceModel.Sondage/ISondageService/GetNext" message="tns:ISondageService_GetNext_InputMessage" />
+      <wsdl:output wsam:Action="http://USherbrooke.ServiceModel.Sondage/ISondageService/GetNextResponse" message="tns:ISondageService_GetNext_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>
