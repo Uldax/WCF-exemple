@@ -65,6 +65,7 @@
     <Compile Include="Poll.cs" />
     <Compile Include="PollQuestion.cs" />
     <Compile Include="Server.cs" />
+    <Compile Include="Sha.cs" />
     <Compile Include="SimpleSondageDAO.cs" />
     <Compile Include="ISondageDAO.cs" />
     <Compile Include="ISondageService.cs" />

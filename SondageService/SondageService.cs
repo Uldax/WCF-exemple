@@ -56,15 +56,37 @@ namespace USherbrooke.ServiceModel.Sondage
         {
             if (IsUserConnected(userId)) {
                 SimpleSondageDAO userDAO = null;
-                this.UsersConnected.TryGetValue(userId, out userDAO);
-                return userDAO.GetAvailablePolls();
+                try {
+                    this.UsersConnected.TryGetValue(userId, out userDAO);
+                    return userDAO.GetAvailablePolls();
+                } catch (ArgumentNullException e) {
+                    Console.WriteLine(e.Message);
+                }
             }
+            Console.WriteLine("User need to be auth before using this function");
             return null;
         }
 
         public PollQuestion GetNext(int userId, PollQuestion answer)
         {
-            throw new NotImplementedException();
+            if (IsUserConnected(userId))
+            {
+                SimpleSondageDAO userDAO = null;
+                try{
+                    //get the user DAO
+                    this.UsersConnected.TryGetValue(userId, out userDAO);
+                    //Save the answer
+                    userDAO.SaveAnswer(userId, answer);
+                    //Then return the next question 
+                    return userDAO.GetNextQuestion(answer.PollId, answer.QuestionId);
+                }
+                catch (ArgumentNullException e) {
+                    Console.WriteLine(e.Message);
+                } catch (InvalidIdException e)  {
+                    Console.WriteLine(e.Message);
+               }                     
+            }
+            return null;
         }
 
         private bool IsUserConnected(int userId)
