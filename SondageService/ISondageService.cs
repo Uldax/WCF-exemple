@@ -19,7 +19,7 @@ namespace USherbrooke.ServiceModel.Sondage
         /// <param name="password"></param>
         /// <returns>L'identifiant de l'utilisateur.</returns>
         [OperationContract]
-        int Connect(String name, String password);
+        int Connect(String name, String password,String token);
 
         /// <summary>
         /// Liste les sondages disponibles.

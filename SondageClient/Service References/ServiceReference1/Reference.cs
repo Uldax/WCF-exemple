@@ -156,10 +156,10 @@ namespace SondageClient.ServiceReference1 {
     public interface ISondageService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://USherbrooke.ServiceModel.Sondage/ISondageService/Connect", ReplyAction="http://USherbrooke.ServiceModel.Sondage/ISondageService/ConnectResponse")]
-        int Connect(string name, string password);
+        int Connect(string name, string password, string token);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://USherbrooke.ServiceModel.Sondage/ISondageService/Connect", ReplyAction="http://USherbrooke.ServiceModel.Sondage/ISondageService/ConnectResponse")]
-        System.Threading.Tasks.Task<int> ConnectAsync(string name, string password);
+        System.Threading.Tasks.Task<int> ConnectAsync(string name, string password, string token);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://USherbrooke.ServiceModel.Sondage/ISondageService/GetAvailablePolls", ReplyAction="http://USherbrooke.ServiceModel.Sondage/ISondageService/GetAvailablePollsResponse" +
             "")]
@@ -203,12 +203,12 @@ namespace SondageClient.ServiceReference1 {
                 base(binding, remoteAddress) {
         }
         
-        public int Connect(string name, string password) {
-            return base.Channel.Connect(name, password);
+        public int Connect(string name, string password, string token) {
+            return base.Channel.Connect(name, password, token);
         }
         
-        public System.Threading.Tasks.Task<int> ConnectAsync(string name, string password) {
-            return base.Channel.ConnectAsync(name, password);
+        public System.Threading.Tasks.Task<int> ConnectAsync(string name, string password, string token) {
+            return base.Channel.ConnectAsync(name, password, token);
         }
         
         public SondageClient.ServiceReference1.Poll[] GetAvailablePolls(int userId) {

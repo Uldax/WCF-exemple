@@ -61,34 +61,45 @@ namespace SondageClient
         public static void Main(string[] args)
         {
             SondageServiceClient client = new SondageServiceClient();
-            try {
-
-                String user, pass = null;
+            try
+            {
+                String user = null, pass = null;
+                String token = "ZRwS7Ve4g1i99MFwsFC43yYSa4RgV1a";
+                int userID = -1;
                 Console.Write("Login :");
                 user = readCredentials();
                 Console.Write("Password :");
-                pass = readCredentials();                
-                int userID = client.Connect(user, pass);
+                pass = readCredentials();      
+                userID = client.Connect(user,pass,token);
 
-                // Si l'authenfication a échouée
-                if (userID == -1) {
+                //If auth failed
+                if (userID == -1)
+                {
                     throw new Exception("Wrong credentials");
-                } else {
-                    Console.WriteLine("Connected");
+                } else if (userID == -2)
+                {
+                    throw new Exception("Server not certified");
+                }
+                else
+                {
+                    Console.WriteLine("User {0}  connected",userID);
                     Poll[] polls = client.GetAvailablePolls(userID);
-
                     // Display all available poll
-                    if (polls != null) {        
-                        Console.WriteLine("Available poll : {0} \n",polls.Length);
+                    if (polls != null)
+                    {
+                        Console.WriteLine("Available poll : {0} \n", polls.Length);
                         foreach (Poll poll in polls)
                         {
                             Console.WriteLine(poll.Id + ". " + poll.Description);
                         }
                     }
 
-                    //ask the user to choose a poll
+                    //Ask the user to choose a poll
                     int idPoll = readEntry(polls.Length);
-                    Console.WriteLine("You choose {0}", idPoll);
+
+
+                    //TODO : write in folder in fanal version
+                    Console.WriteLine("User {0} ask for poll {1}", userID, idPoll);
 
                     // Default question to start the poll
                     PollQuestion firstQuestion = craftFirstQuestion(idPoll);
@@ -96,7 +107,8 @@ namespace SondageClient
                     Console.WriteLine(question.QuestionId + ". " + question.Text);
                     String answer = readAnswer();
                     question.Text = answer;
-                    
+                    Console.WriteLine("User {0} answer : {1} to question {2}", userID, answer, question.QuestionId);
+                    //Display all the poll
                     while ((question = client.GetNext(userID, question)) != null)
                     {
                         //Display the question
@@ -104,10 +116,13 @@ namespace SondageClient
                         //Ask for an answer
                         answer = readAnswer();
                         question.Text = answer;
+                        //TODO : write in folder in fanal version
+                        Console.WriteLine("User {0} answer : {1} to question {2}",userID, answer,question.QuestionId);
                     }
-
                 }
-            } catch(Exception e) {
+            }
+            catch (Exception e)
+            {
                 Console.WriteLine(e.Message);
             }
             finally

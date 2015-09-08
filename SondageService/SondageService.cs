@@ -15,6 +15,7 @@ namespace USherbrooke.ServiceModel.Sondage
         public Dictionary<string, string> usersList { get; set; }
         //SimpleSondageDao is like the connexion to the DB
         public Dictionary<int, SimpleSondageDAO> usersConnected { get; set; }
+        private String token { get; } = "ZRwS7Ve4g1i99MFwsFC43yYSa4RgV1a";
 
         public SondageService()
         {
@@ -26,33 +27,48 @@ namespace USherbrooke.ServiceModel.Sondage
             this.usersList.Add("admin", "dJE/XNX2HsC8/bd1QUwvs9FhtiA=");
         }
 
-        public int Connect(String name, String password)
+        public int Connect(String name, String password,String token)
         {
-            Console.WriteLine("Trying to connect {0}",name);
-            if (this.usersList.ContainsKey(name))
+            try
             {
-                //try to get the password
-                String rightPassword = null;
-                String hashPassword = Sha.HachPassword(password);
-                //out = passage de référence
-                try {
-                    usersList.TryGetValue(name, out rightPassword);
-                    if (hashPassword.Equals(rightPassword))
+                if (token.Equals(this.token))
+                {
+                    Console.WriteLine("Trying to connect {0}", name);
+                    if (this.usersList.ContainsKey(name))
                     {
-                        //create a DAO for the user linked to his id
-                        SimpleSondageDAO userDAO = new SimpleSondageDAO();
-                        int userId = this.usersConnected.Count + 1;
-                        this.usersConnected.Add(userId, userDAO);
-                        Console.WriteLine("Utilisateur connected. userId : {0}", userId);
-                        return userId;
+                        //try to get the password
+                        String rightPassword = null;
+                        String hashPassword = Sha.HachPassword(password);
+                        //out = passage de référence     
+                        usersList.TryGetValue(name, out rightPassword);
+                        if (hashPassword.Equals(rightPassword))
+                        {
+                            //create a DAO for the user linked to his id
+                            SimpleSondageDAO userDAO = new SimpleSondageDAO();
+                            int userId = this.usersConnected.Count + 1;
+                            this.usersConnected.Add(userId, userDAO);
+                            Console.WriteLine("Utilisateur connected. userId : {0}", userId);
+                            return userId;
+                        }
+                        else
+                        {
+                            //Invalid id code 
+                            throw new InvalidIdException();
+                        }
                     }
-                } catch (ArgumentNullException e) {
-                    Console.WriteLine(e.Message);
-                } catch (InvalidIdException e) {
-                    Console.WriteLine(e.Message);
+                    else throw new InvalidIdException();
                 }
+                else
+                {
+                    Console.WriteLine("Wrong token");
+                    return -2;
+                }
+            } catch (ArgumentNullException e) {
+                Console.WriteLine(e.Message);
+            } catch (InvalidIdException e) {
+                Console.WriteLine(e.Message);
             }
-            return -1;           
+            return -1;                 
         }
 
         public IList<Poll> GetAvailablePolls(int userId)
