@@ -32,13 +32,22 @@ namespace SondageClient
         public static String readAnswer()
         {
             String response;
-            // Mise à jour de la réponse
             do
             {
                 Console.WriteLine("Votre réponse (a, b, c ou d):");
                 response = Console.ReadLine();
             } while (String.IsNullOrEmpty(response) || !(response.Equals("a") || response.Equals("b") || response.Equals("c") || response.Equals("d")));
             return response;
+        }
+
+        public static String readCredentials()
+        {
+            String credential;
+            do
+            {
+                credential = Console.ReadLine();
+            } while (String.IsNullOrEmpty(credential) );
+            return credential;
         }
 
         public static PollQuestion craftFirstQuestion(int idPoll) {
@@ -53,8 +62,14 @@ namespace SondageClient
         {
             SondageServiceClient client = new SondageServiceClient();
             try {
-                String mdp = "adminpass";
-                int userID =  client.Connect("admin",mdp);
+
+                String user, pass = null;
+                Console.Write("Login :");
+                user = readCredentials();
+                Console.Write("Password :");
+                pass = readCredentials();                
+                int userID = client.Connect(user, pass);
+
                 // Si l'authenfication a échouée
                 if (userID == -1) {
                     throw new Exception("Wrong credentials");
