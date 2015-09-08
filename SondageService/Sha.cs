@@ -6,7 +6,7 @@ namespace USherbrooke.ServiceModel.Sondage
 {
     class Sha
     {
-        static string HachPassword(string clearPassword)
+        public static string HachPassword(string clearPassword)
         {
             byte[] bytes = Encoding.UTF8.GetBytes(clearPassword);
             byte[] protectedBytes;
@@ -15,5 +15,16 @@ namespace USherbrooke.ServiceModel.Sondage
             protectedBytes = sha.ComputeHash(bytes);
             return Convert.ToBase64String(protectedBytes);
         }
+
+        public static void ShowHachPassword(string clearPassword)
+        {
+            byte[] bytes = Encoding.UTF8.GetBytes(clearPassword);
+            byte[] protectedBytes;
+            SHA1 sha = new SHA1CryptoServiceProvider();
+            // This is one implementation of the abstract class SHA1.
+            protectedBytes = sha.ComputeHash(bytes);
+            Console.WriteLine(Convert.ToBase64String(protectedBytes));
+        }
+
     }
 }

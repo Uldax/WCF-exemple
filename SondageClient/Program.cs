@@ -9,24 +9,23 @@ namespace SondageClient
 {
     class Program
     {
-        public static int readEntry()
+        public static int readEntry(int maxValue)
         {
             int pollId = 0;
             bool secondTry = false;
             String idRead = null;
              do {
                 if(secondTry) {
-                    Console.WriteLine("Wrong entry");
+                    Console.WriteLine("Please use the right syntaxe");
                 }
-                Console.WriteLine("Choix du sondage :");
+                Console.WriteLine("Poll choice :");
                 idRead = Console.ReadLine();
                 secondTry = true;
-                if (String.IsNullOrEmpty(idRead) == false)
-                {
+                if (String.IsNullOrEmpty(idRead) == false) {
                     pollId = Convert.ToInt32(idRead);
                 }
-                // Demande du choix du sondage tant que le choix est invalide
-            } while (String.IsNullOrEmpty(idRead) || pollId < 1 || pollId > idRead.Length);
+                // Ask while there is an error
+            } while (String.IsNullOrEmpty(idRead) || pollId < 1 || pollId > maxValue);
             return pollId;
         }
 
@@ -54,18 +53,18 @@ namespace SondageClient
         {
             SondageServiceClient client = new SondageServiceClient();
             try {
-                String mdp = "paul";
-                int userID =  client.Connect("paul",mdp);
+                String mdp = "adminpass";
+                int userID =  client.Connect("admin",mdp);
                 // Si l'authenfication a échouée
                 if (userID == -1) {
-                    throw new Exception("Erreur d'authentification.");
+                    throw new Exception("Wrong credentials");
                 } else {
                     Console.WriteLine("Connected");
                     Poll[] polls = client.GetAvailablePolls(userID);
 
                     // Display all available poll
                     if (polls != null) {        
-                        Console.WriteLine("Sondages disponibles : {0} \n",polls.Length);
+                        Console.WriteLine("Available poll : {0} \n",polls.Length);
                         foreach (Poll poll in polls)
                         {
                             Console.WriteLine(poll.Id + ". " + poll.Description);
@@ -73,15 +72,16 @@ namespace SondageClient
                     }
 
                     //ask the user to choose a poll
-                    int idPoll = readEntry();
+                    int idPoll = readEntry(polls.Length);
                     Console.WriteLine("You choose {0}", idPoll);
 
                     // Default question to start the poll
                     PollQuestion firstQuestion = craftFirstQuestion(idPoll);
-                    PollQuestion question = client.GetNext(userID, firstQuestion);           
+                    PollQuestion question = client.GetNext(userID, firstQuestion);
+                    Console.WriteLine(question.QuestionId + ". " + question.Text);
                     String answer = readAnswer();
                     question.Text = answer;
-
+                    
                     while ((question = client.GetNext(userID, question)) != null)
                     {
                         //Display the question
@@ -97,8 +97,8 @@ namespace SondageClient
             }
             finally
             {
-                //Step 3: Closing the client gracefully closes the connection and cleans up resources.
-                Console.WriteLine("Appuyer sur une touche pour fermer la console...");
+                //Closing the client gracefully closes the connection and cleans up resources.
+                Console.WriteLine("Thank you, press anny key to close the console...");
                 Console.ReadLine();
                 client.Close();
             }
